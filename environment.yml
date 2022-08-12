@@ -1,4 +1,4 @@
-name: snakemake
+name: pore-c-snakemake
 channels:
   - anaconda
   - conda-forge
@@ -191,4 +191,3 @@ dependencies:
   - zipp=3.8.1=pyhd8ed1ab_0
   - zlib=1.2.12=h166bdaf_2
   - zstd=1.5.2=h8a70e8d_3
-prefix: /localenv/koppstein/anaconda/miniconda3/envs/snakemake
