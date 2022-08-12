@@ -1,0 +1,56 @@
+default-resources:
+  - partition=bioinfo
+  - tmpdir='/data/extended'
+  - mem_mb=1000
+  - disk_mb=1000
+  - logdir='logs'
+cluster:
+  if [ -d {resources.tmpdir} ]; then
+    export TMPDIR={resources.tmpdir};
+  else
+    >&2 echo "Warning... tempdir {resources.tmpdir} does not exist. TMPDIR is set to $TMPDIR.";
+  fi;
+  module load slurm &&
+  mkdir -p {resources.logdir}/`date +"%F"`/{rule} &&
+  sbatch
+    --partition={resources.partition}
+    --ntasks-per-node 1
+    --cpus-per-task={threads}
+    --mem={resources.mem_mb}
+    --job-name=smk-{rule}-{wildcards}
+    --output={resources.logdir}/`date +"%F"`/{rule}/{rule}-{wildcards}-`date +"%H%m%S"`-job%j.out
+    --error={resources.logdir}/`date +"%F"`/{rule}/{rule}-{wildcards}-`date +"%H%m%S"`-job%j.err
+    --parsable # required to run status-scontrol.sh (as well as other scripts)
+restart-times: 3
+max-jobs-per-second: 10
+max-status-checks-per-second: 1
+local-cores: 2
+latency-wait: 300
+jobs: 500
+keep-going: True
+rerun-incomplete: True
+printshellcmds: True
+scheduler: greedy
+use-conda: True
+cluster-cancel: cluster-cancel.sh
+cluster-cancel-nargs: 50
+use-singularity: False # if using Singularity, switch use-conda to False
+cluster-status: status-scontrol.sh
+
+# additional options that might be useful for individual workflows
+
+# set a shadow directory for jobs that create lots of temporary files
+#shadow-prefix: /scratch/local/
+
+# set rule-specific threads
+# set-threads:
+#   - single_core_rule=1
+#   - multi_core_rule=10
+
+# set rule-specific resources
+# # set-resources: map rule names to resources in general
+set-resources:
+  - summarise_contacts:mem_mb=12000
+  - merge_contact_files:mem_mb=12000
+#   - long_running_rule:runtime=1200
+#   - gpu_rule:partition=gpu

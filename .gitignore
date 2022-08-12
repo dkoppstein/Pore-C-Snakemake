@@ -8,3 +8,4 @@ default.profraw
 .venv
 .tox
 dask-worker-space
+logs/
