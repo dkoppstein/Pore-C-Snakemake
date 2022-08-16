@@ -7,4 +7,4 @@
 #run01	NlaIII	GRCh38	GM12878	.test/resources/GM12878_NlaIII_reads.fq.gz	.test/resources/GM12878_NlaIII_fast5	.test/resources/GM12878_NlaIII.sequencing_summary.txt
 #run02	NlaIII	draft1	GM12878	.test/resources/GM12878_NlaIII_reads.fq.gz	.test/resources/GM12878_NlaIII_fast5	.test/resources/GM12878_NlaIII.sequencing_summary.txt
 run_id	enzyme	refgenome_ids	biospecimen	fastq_path	fast5_directory	sequencing_summary_path
-dpnII_run01 DpnII GRCm39  9sCa  /data/manke/processing/koppstein/pore-c/resources/Project_2372_Sun_Akhtar/Sample_22L000110/NPCs_Control_DpnII.fastq.gz  /data/manke/processing/koppstein/pore-c/resources/Project_2372_Sun_Akhtar/fast5 /data/manke/processing/koppstein/pore-c/resources/Project_2372_Sun_Akhtar/sequencing_summary_FAS60409_f408d884.txt
+run01	DpnII	GRCm38	9sCa	/data/manke/processing/koppstein/pore-c/resources/Project_2372_Sun_Akhtar/Sample_22L000110/NPCs_Control_DpnII.fastq.gz	/data/manke/processing/koppstein/pore-c/resources/Project_2372_Sun_Akhtar/fast5 /data/manke/processing/koppstein/pore-c/resources/Project_2372_Sun_Akhtar/sequencing_summary_FAS60409_f408d884.txt
