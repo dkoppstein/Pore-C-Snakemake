@@ -35,20 +35,20 @@ software:
     tools_url: "https://s3.amazonaws.com/hicfiles.tc4ga.com/public/juicer/juicer_tools_1.19.02.jar"
   bwa:
     cli_opts: "bwasw -b 5 -q 2 -r 1 -T 15 -z 10"
-    threads: 10
+    threads: 64
   pore_c:
     create_alignment_table:
-      threads: 1
+      threads: 32
     to_cooler:
-      threads: 10
+      threads: 32
     to_unsorted_pairs:
-      threads: 1
+      threads: 32
     sort_pairs_file:
-      threads: 10
+      threads: 32
     to_salsa_bed:
-      threads: 4
+      threads: 32
   sort:
-      threads: 10
+      threads: 64
       memory_per_thread: "4G"
   f5c:
       run_mode: cpu  # gpu
@@ -57,16 +57,15 @@ software:
       settings:
         gpu:
           binary: "f5c_x86_64_linux_cuda"
-          threads: 8
+          threads: 16
           gpus: 1
           cli_opts: "--cuda-dev-id 0 --cuda-mem-frac 0.7"
         cpu:
           binary: "f5c_x86_64_linux"
-          threads: 20
+          threads: 32
           gpus: 0
           cli_opts: ""
 
 # mapping_query: ""
 mapping_query: ""
 pore_c_version: 'rel'
-
