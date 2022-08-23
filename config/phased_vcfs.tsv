@@ -5,4 +5,4 @@
 # vcf_path: Path to a tabix-indexed VCF file with phased variants.
 #GIAB	GRCh38	GM12878	.test/resources/GM12878.phased.conf.vcf.gz
 phase_set_id	refgenome_id	biospecimen	vcf_path
-129S1CAST	GRCm38	9sCa	/data/manke/processing/koppstein/pore-c/resources/snp_genome/129S1_CAST.snp.hicpro.vcf.gz
+129S1CAST	GRCm38	9sCa	/data/akhtar/Mouse2019AlleleSpecific2/projects/pore-c/resources/snp_genome/129S1_CAST.snp.hicpro_reformatted.vcf.gz

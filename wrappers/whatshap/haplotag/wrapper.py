@@ -38,6 +38,7 @@ shell(
     "whatshap haplotag  {snakemake.params.vcf} {snakemake.input.bam} "
     "--ignore-read-groups -r {snakemake.input.refgenome} "
     "--output-haplotag-list {snakemake.output}  "
+    "{snakemake.params.additional_params} "
     " -o /dev/null "
     " {log}"
 )

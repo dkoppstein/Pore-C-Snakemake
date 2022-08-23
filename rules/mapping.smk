@@ -45,9 +45,12 @@ rule haplotag:
         refgenome=paths.refgenome.fasta_unzipped,
     params:
         vcf=lookup_value("vcf_path", mapping_df),
-        is_phased=is_phased,  #conda: "../envs/whatshap.yml"
+        is_phased=is_phased,  #conda: "../envs/whatshap.yml",
+        additional_params="--skip-missing-contigs"
     log:
         to_log(paths.mapping.haplotagged_aligns),
+    resources:
+        mem_mb=16000
     benchmark:
         to_benchmark(paths.mapping.haplotagged_aligns)
     wrapper:
@@ -65,6 +68,8 @@ rule create_alignment_table:
     benchmark:
         to_benchmark(paths.align_table.alignment)
     threads: config["software"]["pore_c"]["create_alignment_table"]["threads"]
+    resources:
+        mem_mb=16000
     conda:
         PORE_C_CONDA_FILE
     shell:
@@ -83,6 +88,8 @@ rule assign_fragments:
     benchmark:
         to_benchmark(paths.align_table.pore_c)
     threads: config["software"]["pore_c"]["create_alignment_table"]["threads"]
+    resources:
+        mem_mb=16000
     conda:
         PORE_C_CONDA_FILE
     shell:
@@ -104,6 +111,8 @@ rule to_contacts:
     conda:
         PORE_C_CONDA_FILE
     threads: 1
+    resources:
+        mem_mb=16000
     shell:
         "pore_c {DASK_SETTINGS} --dask-num-workers {threads} "
         "alignments to-contacts {input} {output.contacts} 2>{log}"
@@ -151,6 +160,8 @@ rule merge_contact_files:
     threads: 4
     conda:
         PORE_C_CONDA_FILE
+    resources:
+        mem_mb=24000
     shell:
         "pore_c {DASK_SETTINGS} --dask-num-workers {threads} "
         "contacts merge {input} {output} --fofn"
@@ -169,9 +180,11 @@ rule summarise_contacts:
         to_log(paths.merged_contacts.concatemers),
     benchmark:
         to_benchmark(paths.merged_contacts.concatemers)
-    threads: 10
+    threads: 16
     conda:
         PORE_C_CONDA_FILE
+    resources:
+        mem_mb=48000
     shell:
         "pore_c {DASK_SETTINGS} --dask-num-workers {threads} "
         "contacts summarize {input.contacts} {input.read_summary} {output.pq} {output.csv} "

@@ -4,7 +4,7 @@ from pathlib import Path
 from snakemake.utils import validate, min_version
 
 ##### set minimum snakemake version #####
-min_version("5.5.4")
+#min_version("5.5.4")
 
 
 wildcard_constraints:

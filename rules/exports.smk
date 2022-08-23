@@ -12,6 +12,8 @@ rule to_cooler:
     benchmark:
         to_benchmark(paths.matrix.cool)
     threads: config["software"]["pore_c"]["to_cooler"]["threads"]
+    resources:
+        mem_mb=16000
     conda:
         PORE_C_CONDA_FILE
     shell:
@@ -53,6 +55,8 @@ rule create_mcool_file:
         to_log(paths.matrix.mcool),
     conda:
         "../envs/cooler.yml"
+    resources:
+        mem_mb=16000
     threads: 1
     shell:
         "cooler zoomify -n {threads} -r {params.resolutions} -o {output} {input} 2>{log}"

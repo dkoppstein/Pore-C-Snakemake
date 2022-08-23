@@ -50,7 +50,6 @@ rule bwa_index_refgenome:
         "../envs/bwa.yml"
     log:
         to_log(paths.refgenome.bwt),
-    benchmark:
-        to_benchmark(paths.refgenome.bwt)
+    threads: 5
     shell:
         "bwa index {input} 2>{log}"
