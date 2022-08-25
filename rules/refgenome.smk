@@ -12,7 +12,9 @@ rule add_refgenome:
         to_log(paths.refgenome.catalog),
     benchmark:
         to_benchmark(paths.refgenome.catalog)
-    threads: 5
+    threads: 16
+    resources:
+        mem_mb=8000
     conda:
         PORE_C_CONDA_FILE
     shell:
@@ -33,10 +35,13 @@ rule virtual_digest:
         to_benchmark(paths.virtual_digest.catalog)
     log:
         to_log(paths.virtual_digest.catalog),
-    threads: 10
+    threads: 16
+    resources:
+        mem_mb=16000
     conda:
         PORE_C_CONDA_FILE
     shell:
+        "ulimit -s unlimited && "
         "pore_c {DASK_SETTINGS} --dask-num-workers {threads} "
         "refgenome virtual-digest {input} {wildcards.enzyme} {params.prefix} -n {threads} 2> {log}"
 
@@ -48,8 +53,10 @@ rule bwa_index_refgenome:
         paths.refgenome.bwt,
     conda:
         "../envs/bwa.yml"
+    resources:
+        mem_mb=24000
     log:
         to_log(paths.refgenome.bwt),
-    threads: 5
+    threads: 1
     shell:
         "bwa index {input} 2>{log}"

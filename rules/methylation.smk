@@ -25,10 +25,13 @@ rule filter_bam:
         filtered_bai=paths.mapping.filtered_bai,
     benchmark:
         to_benchmark(paths.mapping.filtered_bam)
+    threads: 16
     log:
         to_log(paths.mapping.filtered_bam),
     conda:
         PORE_C_CONDA_FILE
+    resources:
+        mem_mb=16000
     shell:
         "( pore_c {DASK_SETTINGS} --dask-num-workers {threads} "
         "alignments filter-bam {input.bam} {input.pore_c_table} {output.filtered_bam} "
@@ -60,6 +63,8 @@ rule f5c_index:
         to_benchmark(paths.basecall.f5c_index)
     log:
         to_log(paths.basecall.f5c_index),
+    resources:
+        mem_mb=24000
     shell:
         """
         {input.binary} index -d {input.fast5} -s {input.summary} {input.fastq} 2>{log}
@@ -87,6 +92,7 @@ rule f5c_call_methylation:
         per_read=paths.methylation.per_read_llr,
     resources:
         gpu=f5c_config["gpus"],
+        mem_mb=
     params:
         cli_opts=f5c_config["cli_opts"],
     benchmark:

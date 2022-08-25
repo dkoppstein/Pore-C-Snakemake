@@ -13,6 +13,8 @@ rule align_bwa:
         cli_opts=config["software"]["bwa"]["cli_opts"],
         memory=config["software"]["sort"]["memory_per_thread"],
         sort_threads=config["software"]["sort"]["threads"],
+    resources:
+        mem_mb=24000
     threads: config["software"]["bwa"]["threads"]
     conda:
         "../envs/bwa.yml"
