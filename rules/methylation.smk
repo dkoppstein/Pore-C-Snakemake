@@ -92,7 +92,7 @@ rule f5c_call_methylation:
         per_read=paths.methylation.per_read_llr,
     resources:
         gpu=f5c_config["gpus"],
-        mem_mb=
+        mem_mb=24000
     params:
         cli_opts=f5c_config["cli_opts"],
     benchmark:

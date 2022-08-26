@@ -8,3 +8,5 @@
 #run02	NlaIII	draft1	GM12878	.test/resources/GM12878_NlaIII_reads.fq.gz	.test/resources/GM12878_NlaIII_fast5	.test/resources/GM12878_NlaIII.sequencing_summary.txt
 run_id	enzyme	refgenome_ids	biospecimen	fastq_path	fast5_directory	sequencing_summary_path
 run01	DpnII	GRCm38	9sCa	/data/akhtar/Mouse2019AlleleSpecific2/projects/pore-c/resources/Project_2372_Sun_Akhtar/Sample_22L000110/NPCs_Control_DpnII.fastq.gz	/data/akhtar/Mouse2019AlleleSpecific2/projects/pore-c/resources/Project_2372_Sun_Akhtar/fast5 /data/akhtar/Mouse2019AlleleSpecific2/projects/pore-c/resources/Project_2372_Sun_Akhtar/sequencing_summary_FAS60409_f408d884.txt
+run02	NlaIII	GRCm38	9sCa	/data/akhtar/Mouse2019AlleleSpecific2/projects/pore-c/resources/nanopore_data/NlaIII_combined/NPCs_Control_NlaIII_combined.fastq.gz	/data/akhtar/Mouse2019AlleleSpecific2/projects/pore-c/resources/nanopore_data/NlaIII_combined/fast5	/data/akhtar/Mouse2019AlleleSpecific2/projects/pore-c/resources/nanopore_data/NlaIII_combined/combined_sequencing_summary.txt
+
